@@ -1,5 +1,6 @@
 import React from "react";
 import LikeButton from "./LikeButton";
+import Link from "next/link";
 
 const fetchPost = () => {
   return fetch("https://jsonplaceholder.typicode.com/posts", {
@@ -14,9 +15,11 @@ const ListOfPost = async () => {
 
   return posts.slice(0, 5).map((post) => (
     <article key={post.id}>
-      {post.title}
-      <p>{post.body}</p>
-      <LikeButton />
+      <Link href="/posts/[id]" as={`/posts/${post.id}`}>
+        {post.title}
+        <p>{post.body}</p>
+        <LikeButton />
+      </Link>
     </article>
   ));
 };
